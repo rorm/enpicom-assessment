@@ -1,0 +1,114 @@
+@font-face {
+  font-family: 'Typold Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Typold Regular'), url('./fonts/The Northern Block Ltd - Typold Regular.woff') format('woff');
+  }
+
+@font-face {
+    font-family: "Posterama 2001 W04 SemiBold";
+    src: local('Posterama 2001 W04 SemiBold'), url('./fonts/Posterama SemiBold.woff') format('woff');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f2f2f2;
+  font-family:'Typold Regular';
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: 30rem;
+  /* background: rgb(251, 251, 255); */
+  overflow: visible;
+}
+
+/* Dots in graph changed color  */
+.datapoint {
+  fill:#3b78af;
+}
+
+.selected {
+  fill: rgb(255, 73, 73);
+}
+
+.container {
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+.workspaceContainer {
+  margin-left: 15rem;
+  margin-right: 6rem;
+}
+
+.headerToolbar {
+  position: sticky;
+  top:0;
+  margin-left: 6rem;
+  height: 3.5rem;
+  background-color:white;
+  border-bottom:1px solid rgb(216, 216, 216);
+  z-index: 2;
+}
+
+.appToolbar{
+  position: fixed;
+  top:3.5rem;
+  width: 6rem;
+  height: 100vh;
+  border-right:1px solid rgb(216, 216, 216);
+
+  background-color: white;
+  z-index: 1;
+}
+
+.logoContainer{
+  position:fixed;
+  top:0;
+  left:0;
+  width: 6rem;
+  background-color: white;
+}
+
+.logo{
+  cursor:pointer;
+  padding-top: 0.3rem;
+  width: 4.7rem;
+}
+
+.logoutIcon {
+  cursor:pointer;
+  position:fixed;
+  bottom:0;
+  left:0;
+  padding: 2.1em;
+  z-index:1;
+  filter: invert(77%) sepia(4%) saturate(13%) hue-rotate(322deg) brightness(85%) contrast(84%);
+}
+
+.title {
+  position:absolute;
+
+  right:2rem;;
+  color:black;
+  font-weight: bold;
+  padding-top: 1rem;
+  font-size: 1.1rem;
+}
+
+ 
+
+.loading {
+    position: relative;
+    top: 10rem;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+    color: lightgray;
+}

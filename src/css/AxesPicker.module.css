@@ -1,0 +1,61 @@
+select {
+    /* reset */
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    /* styles */
+    width: 20rem;
+    height: 100%;
+    padding: 0 0rem 0 1.3rem;
+    background: url('../images/caret_down_icon.svg')
+        no-repeat right 0.8rem center / 1.4rem,
+        #3a53a5;
+    color: white;
+    border-radius: 0.35rem;
+    /* box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2); */
+    cursor: pointer;
+}
+
+.container {
+    margin:0;
+    padding:0;
+    display: inline-block;
+    height:3.1rem;
+} 
+
+.button {
+    margin-top: 2rem;
+    display: inline-block;
+    cursor:pointer;
+    font-family: inherit;
+    background-color: #425db8;
+    border: none;
+    color: white;
+    padding: 0.3rem 1.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 2rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.button:active{
+    background-color:#3a53a5;
+}
+
+.x {
+    position:relative;
+    top:0.8rem;
+    z-index: 0;
+}
+
+.y{
+    transform: rotate(-90deg);
+    position:absolute;
+    left:0;
+    top: 23rem;
+    z-index: 0;
+}
+
+
