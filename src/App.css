@@ -30,13 +30,13 @@ svg {
 }
 
 /* Dots in graph changed color  */
-.datapoint {
+/* .datapoint {
   fill:#3b78af;
 }
 
 .selected {
   fill: rgb(255, 73, 73);
-}
+} */
 
 .container {
   text-align: center;

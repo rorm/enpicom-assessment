@@ -46,6 +46,17 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
       .domain(extent(data, yValue))
       .range([height, 0]).nice();
 
+    // 3rd visualised dimension hardcoded as 'J Score' for now
+    const zValue = (datumObject) => {
+      return datumObject['J Score'];
+    };
+
+    // Take in a value and return an rgb value between yellow and red.
+    const zScale = scaleLinear()
+      // Find min and max values from data set
+      .domain(extent(data, zValue))
+      .range(['rgb(59, 120, 175)', 'rgb(255, 73, 73)'])
+
 
     // Check whether a datapoint falls within the user selected area.
     const isSelected = (datumObject) => {
@@ -81,8 +92,14 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
       )
       // Enlarge radius if selected
       .attr("r", (datumObject) =>
-      isSelected(datumObject) ? 1.2 : 0.9
+      isSelected(datumObject) ? 3.3 : 2.7
       )
+      // J score is plotted on a 3rd 'axis' from red to blue
+      // *Note* Some datapoints do not have a J Score. They will appear black by default.
+      .attr('fill', (datumObject) => {
+        const color = zScale(datumObject['J Score'])
+        return color
+      })
       // Provide x pixel position
       .attr("cx", (datumObject) => {
         const datumPixelPositionX = xScale(datumObject[selectedXValue]);
