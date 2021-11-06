@@ -92,7 +92,7 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
       )
       // Enlarge radius if selected
       .attr("r", (datumObject) =>
-      isSelected(datumObject) ? 3.3 : 2.7
+      isSelected(datumObject) ? 5 : 2.7
       )
       // J score is plotted on a 3rd 'axis' from red to blue
       // *Note* Some datapoints do not have a J Score. They will appear black by default.
@@ -100,6 +100,8 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
         const color = zScale(datumObject['J Score'])
         return color
       })
+      .attr('stroke', 'white')
+      .attr('stroke-width', '0.02rem')
       // Provide x pixel position
       .attr("cx", (datumObject) => {
         const datumPixelPositionX = xScale(datumObject[selectedXValue]);
