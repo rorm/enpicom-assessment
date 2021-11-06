@@ -101,7 +101,7 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
         return color
       })
       .attr('stroke', 'white')
-      .attr('stroke-width', '0.02rem')
+      .attr('stroke-width', (datumObject) => isSelected(datumObject) ? '0.08rem' : '0.04rem')
       // Provide x pixel position
       .attr("cx", (datumObject) => {
         const datumPixelPositionX = xScale(datumObject[selectedXValue]);
