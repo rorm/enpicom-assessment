@@ -29,11 +29,6 @@ svg {
   overflow: visible;
 }
 
-
-.datapoint:hover {
-  fill:black;
-}
-
 .container {
   text-align: center;
   background-color: #f2f2f2;

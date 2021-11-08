@@ -14,6 +14,9 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
   // Reference to the svg element so that D3 can handle it
   const svgRef = useRef();
   const containerRef = useRef();
+  const tooltipRef = useRef();
+  const tooltipXValueRef = useRef();
+  const tooltipYValueRef = useRef();
   // Hook I found that keeps track of container size using new ResizeObserver browser API
   const dimensions = useResizeObserver(containerRef);
   // Keep track of user selected region as provided by D3's brush() selection event
@@ -76,6 +79,31 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
       }
     }
 
+    const handleMouseEnter = (event, datumObject) => {
+      console.log(datumObject);
+      const tooltip = select(tooltipRef.current)
+      const tooltipXValue = select(tooltipXValueRef.current)
+      const tooltipYValue = select(tooltipYValueRef.current)
+
+      // Get the position of the hovered data point.
+      const datumPixelPositionX = xScale(datumObject[selectedXValue])
+      const datumPixelPositionY = yScale(datumObject[selectedYValue])
+      
+      tooltip.style('opacity', 1)
+      .style('left', `${datumPixelPositionX}px`)
+      .style('top', `${datumPixelPositionY}px`)
+      tooltipXValue.text(datumObject[selectedXValue])
+      tooltipYValue.text(datumObject[selectedYValue])
+    }
+    const handleMouseLeave = (event, datumObject) => {
+      const tooltip = select(tooltipRef.current)
+      const tooltipXValue = select(tooltipXValueRef.current)
+      const tooltipYValue = select(tooltipYValueRef.current)
+      tooltip.style('opacity', 0)
+      tooltipXValue.text('')
+      tooltipYValue.text('')
+    }
+
     // Let D3 handle DOM updates for the graph itself.
     // Map the data to svg 'points'
     svg
@@ -92,7 +120,7 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
       )
       // Enlarge radius if selected
       .attr("r", (datumObject) =>
-      isSelected(datumObject) ? 5 : 2.7
+      isSelected(datumObject) ? 6 : 5
       )
       // J score is plotted on a 3rd 'axis' from red to blue
       // *Note* Some datapoints do not have a J Score. They will appear black by default.
@@ -110,8 +138,12 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
         const datumPixelPositionY = yScale(datumObject[selectedYValue]);
         return datumPixelPositionY
       })
+      .on('mouseenter', handleMouseEnter)
+      .on('mouseleave', handleMouseLeave)
       
       
+      
+
       // Get selected points and store the first 10 of them in state.
       svg
       // Select all the selected datapoints (as determined by their class)
@@ -186,12 +218,17 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
   }, [data, setSelectedData, setSelectedDataCount, dimensions, selection, selectedXValue, selectedYValue]);
 
   return (
-      <div ref={containerRef} className={styles['container']} style={{ marginBottom: "2rem" }}>
+      <div ref={containerRef} className={styles['container']} >
         <svg ref={svgRef}>
           <g className="x-axis" />
           <g className="y-axis" />
           <g className="selectionBrush" />
         </svg>
+        <div ref={tooltipRef} className={`${styles["tooltip"]}`}>
+          {selectedXValue}:&nbsp;<span ref={tooltipXValueRef}></span>
+          <br/>
+          {selectedYValue}:&nbsp;<span ref={tooltipYValueRef}></span>
+        </div>
       </div>
   );
 }
