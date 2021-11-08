@@ -29,14 +29,10 @@ svg {
   overflow: visible;
 }
 
-/* Dots in graph changed color  */
-/* .datapoint {
-  fill:#3b78af;
-}
 
-.selected {
-  fill: rgb(255, 73, 73);
-} */
+.datapoint:hover {
+  fill:black;
+}
 
 .container {
   text-align: center;
