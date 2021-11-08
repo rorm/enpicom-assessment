@@ -100,8 +100,6 @@ function ScatterPlot({ data, setSelectedData, setSelectedDataCount, selectedXVal
         const color = zScale(datumObject['J Score'])
         return color
       })
-      .attr('stroke', 'white')
-      .attr('stroke-width', (datumObject) => isSelected(datumObject) ? '0.08rem' : '0.04rem')
       // Provide x pixel position
       .attr("cx", (datumObject) => {
         const datumPixelPositionX = xScale(datumObject[selectedXValue]);
